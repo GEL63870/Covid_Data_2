@@ -22,6 +22,7 @@
         <activity android:name=".Data_List" />
         <activity android:name=".CustomAdapter" />
         <activity android:name=".One_Country" />
+        <activity android:name=".Barrier_Gesture" />
         <activity android:name=".APIRetrofit" />
         <activity android:name=".models.Country" />
         <activity android:name=".models.Global" />
