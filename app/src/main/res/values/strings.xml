@@ -11,6 +11,16 @@
     <string name="this_application_is_the_result_of_the_lab_5_n_of_two_pwr_students_n_25160_and_256991">This application is the result of the lab 5 \n of two Pwr students : \n 25160 and 256991</string>
     <string name="barrier_gesture_info">Barrier Gesture Info</string>
 
+    // Recap for one country
+    <string name="name_of_the_country">Name of the Country</string>
+    <string name="number_of_new_cases">Number of new cases</string>
+    <string name="number_of_new_deaths">Number of new deaths</string>
+    <string name="number_of_new_recovered">Number of new recovered</string>
+    <string name="total_number_of_recovered">Total number of recovered</string>
+    <string name="total_number_of_deaths">Total number of deaths</string>
+    <string name="total_number_of_cases">Total number of cases</string>
+
+
     <string name="barrier_gesture_link">https://www.institutfrancais.com/en/close-up/information-coronavirus-covid-19</string>
     <string-array name="country_names">
         <item>france</item>
