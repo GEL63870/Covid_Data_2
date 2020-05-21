@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Covid_Data</string>
+    <string name="follow_a_new_country">Follow a new country</string>
+    <string name="country">Country</string>
+    <string name="enter_date">Enter date</string>
+    <string name="my_covid_follow_data">My Covid follow data</string>
+    <string name="menu">Menu</string>
+    <string name="update_date">Update date</string>
+    <string name="description_country">description_country</string>
+
+
+    <string-array name="country_names">
+        <item>France</item>
+        <item>Portugal</item>
+    </string-array>
+</resources>
