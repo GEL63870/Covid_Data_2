@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
             super(itemView);
             mImageView = itemView.findViewById(R.id.iconView);
             mCountryName = itemView.findViewById(R.id.task_name_txt);
-          //  mLatestDate =  itemView.findViewById(R.id.due_date);
+            //mLatestDate =  itemView.findViewById(R.id.due_date);
             mAdapter=adapter;
 
             itemView.setOnClickListener(this);
@@ -68,9 +68,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Country currentCountry = mCountry_List.get(position);
-       // holder.mImageView.setImageResource(currentCountry.getImageResource());
+        //holder.mImageView.setImageResource(currentCountry.getFlagResource());
         holder.mCountryName.setText(currentCountry.getcName());
-       // holder.mLatestDate.setText(currentCountry.get);
+       //holder.mLatestDate.setText(currentCountry.get);
         //holder.mStatus.setText(currentCountry.getStatus());
     }
 

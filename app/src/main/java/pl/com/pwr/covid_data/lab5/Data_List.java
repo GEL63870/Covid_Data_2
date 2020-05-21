@@ -168,14 +168,22 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         pickedCountries = new ArrayList<>();
         //I already had to create that Country class to hold the data from the api, not sure what you want to do,
         //TODO: either stick to Country or adapt this one_country class to all the new stuff
-      //  pickedCountries.add(new One_Country(R.drawable.flag_france, "Country Name", "Last Update = Date", "You read the description of France Covid Data", "Not Done"));
-       // pickedCountries.add(new One_Country(R.drawable.flag_portugal, "Country Name", "Last Update = Date", "You read the description of Portugal Covid Data", "Not Done"));
+        ArrayList<Integer> france = new ArrayList();
+        france.add(200);
+        france.add(10000);
+        france.add(40);
+        france.add(500);
+        france.add(200);
+        france.add(6000);
+        pickedCountries.add(new One_Country(R.drawable.flag_data.ad, "France", "21/05/2020", france));
+
 
     }
 
     // Need to have a database with all the flag of each country and put the good one on the new item
     public void add_country(int position, String title, ArrayList description) {
-       // one_country.add(position, new One_Country(R.drawable.flag_france, title, description, "Not Done"));
+
+        //one_country.add(position, new One_Country(R.drawable.flag_france, title, description);
         mRecyclerView.getAdapter().notifyItemInserted(position);
     }
 
