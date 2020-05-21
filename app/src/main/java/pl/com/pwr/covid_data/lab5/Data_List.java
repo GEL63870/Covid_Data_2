@@ -90,7 +90,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         Log.i("TEST1", "created");
         back_to_menu();
-        new_country ();
+       // new_country ();
         //get spinner
         selectedCountry = findViewById(R.id.country_spinner);
         if (selectedCountry != null) {
@@ -113,16 +113,14 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         call.enqueue(new Callback<Stats>() {
             public void onResponse(Call<Stats> call, Response<Stats> response) {
 
-                Log.i("TEST2", "passed");
                 Stats stats = response.body();
-                Log.i("TEST3", "passed");
                 //from now on the worldstats will have the global stats and the allCountries variable will have each country with its stats
+                assert stats != null;
                 worldStats = stats.getGlobal();
                 allCountries = stats.getCountries();
                 Log.i("TEST2", String.valueOf(allCountries.size()));
                 buildRecyclerView();
                 ready=true;
-                Log.i("TEST", "BOOLEAN READY");
 
             }
 
@@ -186,18 +184,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
     // Build RecyclerView with LinearLayout Manager, Adapter and ItemTouch Helper
     public void buildRecyclerView() {
-        Log.i("TEST2.5", "passed");
-        // Link to the XML
-       /* mRecyclerView = findViewById(R.id.my_recycler_view);
-        // Initialise the LinearLayout Manager with RecyclerView
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // Initialise the Custom Adapter and the ItemTouchHelper
-        mAdapter = new CustomAdapter(this, pickedCountries);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
-        mRecyclerView.setAdapter(mAdapter);
-        Log.i("TEST4", "passed");*/
 
         // Link to the XML
         mRecyclerView = findViewById(R.id.my_recycler_view);

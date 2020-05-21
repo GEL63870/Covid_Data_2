@@ -2,6 +2,7 @@ package pl.com.pwr.covid_data.lab5;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
     public CustomAdapter(Context context , List<Country> countries) {
         this.context = context;
         mCountry_List = countries;
+        Log.i("TEST40", String.valueOf(mCountry_List.size()));
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -35,9 +37,9 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
 
         MyViewHolder(@NonNull View itemView, CustomAdapter adapter) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.iconView);
+          //  mImageView = itemView.findViewById(R.id.iconView);
             mCountryName = itemView.findViewById(R.id.task_name_txt);
-            mUpdate_date =  itemView.findViewById(R.id.due_date);
+         //   mUpdate_date =  itemView.findViewById(R.id.due_date);
             mAdapter=adapter;
 
             itemView.setOnClickListener(this);
@@ -74,7 +76,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
 
     @Override
     public int getItemCount() {
-        return 1;
+        return mCountry_List.size();
     }
 }
 
