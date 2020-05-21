@@ -2,6 +2,7 @@ package pl.com.pwr.covid_data.lab5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,8 +32,8 @@ public class Fragment_Country extends AppCompatActivity {
         String mUpdate_date = one_country != null ? one_country.getDueDate() : null;
 
         // Here we have the 2 data Int that will be use in the progress bar
-        Integer mNew_Percentage_case = (one_country != null) ? one_country.getNewCase() : null;
-        Integer mTotal_case = (one_country != null) ? one_country.getTotalCase() : null;
+        int mNew_case = (one_country != null ? one_country.getNewCase() : 0);
+        int mTotal_case = (one_country != null ? one_country.getTotalCase() : 0);
 
 
 
@@ -47,9 +48,11 @@ public class Fragment_Country extends AppCompatActivity {
         update_date.setText(mUpdate_date);
 
         TextView new_percentage_case = findViewById(R.id.description_detail);
-        new_percentage_case.setText(mNew_Percentage_case);
+        Log.i("TEST40", String.valueOf(mNew_case));
+        new_percentage_case.setText(mNew_case);
 
         TextView total_case = findViewById(R.id.status_detail);
+        Log.i("TEST40", String.valueOf(mTotal_case));
         total_case.setText(mTotal_case);
 
         mProgressBar = findViewById(R.id.circle_progress_bar);

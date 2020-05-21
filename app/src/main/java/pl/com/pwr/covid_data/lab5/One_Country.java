@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import pl.com.pwr.covid_data.lab5.models.Country;
 
 public class One_Country implements Parcelable {
+
     private int mFlagResource;
     private String mCountry_name;
     private String mUpdate_date;
