@@ -28,7 +28,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mImageView;
         TextView mCountryName;
-        // TextView mLatestDate;
+        TextView mUpdate_date;
         CustomAdapter mAdapter;
 
 
@@ -36,7 +36,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
             super(itemView);
             mImageView = itemView.findViewById(R.id.iconView);
             mCountryName = itemView.findViewById(R.id.task_name_txt);
-            //mLatestDate =  itemView.findViewById(R.id.due_date);
+            mUpdate_date =  itemView.findViewById(R.id.due_date);
             mAdapter=adapter;
 
             itemView.setOnClickListener(this);
@@ -70,13 +70,13 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
         Country currentCountry = mCountry_List.get(position);
         //holder.mImageView.setImageResource(currentCountry.getFlagResource());
         holder.mCountryName.setText(currentCountry.getcName());
-       //holder.mLatestDate.setText(currentCountry.get);
+        holder.mUpdate_date.setText(currentCountry.getUpdate_date());
         //holder.mStatus.setText(currentCountry.getStatus());
     }
 
     @Override
     public int getItemCount() {
-        return mCountry_List.size();
+        return 1;
     }
 }
 

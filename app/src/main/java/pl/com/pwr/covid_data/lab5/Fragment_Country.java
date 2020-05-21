@@ -31,8 +31,8 @@ public class Fragment_Country extends AppCompatActivity {
         String mUpdate_date = one_country != null ? one_country.getDueDate() : null;
 
         // Here we have the 2 data Int that will be use in the progress bar
-        Integer mNew_Percentage_case = (one_country != null) ? one_country.getDescriptionsIndex(0) : null;
-        Integer mTotal_case = (one_country != null) ? one_country.getDescriptionsIndex(1) : null;
+        Integer mNew_Percentage_case = (one_country != null) ? one_country.getNewCase() : null;
+        Integer mTotal_case = (one_country != null) ? one_country.getTotalCase() : null;
 
 
 

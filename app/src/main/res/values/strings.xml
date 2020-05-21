@@ -10,7 +10,7 @@
 
 
     <string-array name="country_names">
-        <item>France</item>
+        <item>france</item>
         <item>Portugal</item>
     </string-array>
 </resources>

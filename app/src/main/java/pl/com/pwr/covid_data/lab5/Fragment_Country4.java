@@ -33,9 +33,9 @@ public class Fragment_Country4 extends AppCompatActivity {
 
         // Here we have the 3 data Int that will be use in the 2 progress bar !
         // We need to calculate them first
-        Integer mTotal_recover = (one_country != null) ? one_country.getDescriptionsIndex(5) : null;
-        Integer mTotal_death = (one_country != null) ? one_country.getDescriptionsIndex(3) : null;
-        Integer mTotal_case = (one_country != null) ? one_country.getDescriptionsIndex(1) : null;
+        Integer mTotal_recover = (one_country != null) ? one_country.getTotalRecover() : null;
+        Integer mTotal_death = (one_country != null) ? one_country.getTotalDeaths(): null;
+        Integer mTotal_case = (one_country != null) ? one_country.getTotalCase() : null;
 
         Integer mNew_Percentage_case = (mTotal_case != null) ? mTotal_recover/ mTotal_case : null;
         Integer mNew_Percentage_death = (mTotal_case != null) ? mTotal_death / mTotal_case : null;

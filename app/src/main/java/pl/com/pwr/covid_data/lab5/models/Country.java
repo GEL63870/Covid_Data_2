@@ -20,9 +20,12 @@ public  class Country{
     private int newRecovered;
     @SerializedName("TotalRecovered")
     private int totalRecovered;
+    @SerializedName("Date")
+    private int update_date;
+
 
     public Country(String cName, String cCode, int nConf, int tConf,
-                   int nDeaths, int tDeaths, int nRec, int tRec){
+                   int nDeaths, int tDeaths, int nRec, int tRec, int date){
         this.cName=cName;
         this.cCode=cCode;
         newConfirmed=nConf;
@@ -31,6 +34,7 @@ public  class Country{
         totalDeaths=tDeaths;
         newRecovered=nRec;
         totalRecovered=tRec;
+        update_date=date;
     }
 
     public String getcName() {
@@ -63,6 +67,10 @@ public  class Country{
 
     public int getTotalRecovered() {
         return totalRecovered;
+    }
+
+    public int getUpdate_date() {
+        return update_date;
     }
 
 }

@@ -72,7 +72,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     };
 
     // Will contain all the data from a country we wand to add to recyclerview
-    private ArrayList<Integer> new_due_date, new_description;
+
     public ImageView flagRessources;
 
 
@@ -83,7 +83,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         back_to_menu();
         new_country ();
-        createOne_Country();
+        //createOne_Country();
 
         //get spinner
         selectedCountry = findViewById(R.id.country_spinner);
@@ -136,78 +136,61 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                 // Finds country in the list of all countries and extracts the needed info
                 for(Country c : allCountries){
                     if(c.getcName() != null && c.getcName().contains(countryName)){
-                        String country_code = "R.drawable." + c.getcCode();
-                        String
+                        String country_code = c.getcCode();
                         int newCases = c.getNewConfirmed();
                         int totalCase = c.getTotalConfirmed();
                         int newDeaths = c.getNewDeaths();
                         int totalDeath = c.getTotalDeaths();
                         int newRecovered = c.getNewRecovered();
                         int totalRecovered = c.getTotalRecovered();
+                        int update_date = c.getUpdate_date();
 
                      //etc. you can extract anything you want from the chosen country here;
-                     // Once you extract all, you need to put into descriptions to use it in fragment
-                     // Important to keep the same order in order to use them correctly after
 
+                    // flagRessources = findViewById(country_code);
+                    //new_description.add(newCases);
+                    //new_description.add(totalCase);
+                    //new_description.add(newDeaths);
+                    //new_description.add(totalDeath);
+                    //new_description.add(newRecovered);
+                    //new_description.add(totalRecovered);
 
-                    flagRessources = findViewById(country_code);
-                    new_description.add(newCases);
-                    new_description.add(totalCase);
-                    new_description.add(newDeaths);
-                    new_description.add(totalDeath);
-                    new_description.add(newRecovered);
-                    new_description.add(totalRecovered);
-
+                        int position = 0;
+                        add_country(position, countryName, country_code, newCases, totalCase,
+                                newDeaths, totalDeath, newRecovered, totalRecovered, update_date);
                     }
-
                 }
-
-                // String description = "PLACEHOLDER";
-
-                int position = 0;
-                add_country(position, countryName, new_description);
             }
         });
     }
 
-    public void createOne_Country() {
-        pickedCountries = new ArrayList<>();
-        //I already had to create that Country class to hold the data from the api, not sure what you want to do,
-        //TODO: either stick to Country or adapt this one_country class to all the new stuff
-        ArrayList<Integer> france = new ArrayList();
-        france.add(200);
-        france.add(10000);
-        france.add(40);
-        france.add(500);
-        france.add(200);
-        france.add(6000);
-        pickedCountries.add(new One_Country(R.drawable.flag_france, "France", "21/05/2020", france));
-
-
-    }
-
     // Need to have a database with all the flag of each country and put the good one on the new item
-    public void add_country(int position, String title, ArrayList description) {
+    public void add_country(int position, String CountryName, String country_code, int NewCases,
+                            int TotalCases, int NewDeaths, int TotalDeath, int NewRecover, int TotalRecover, int Update_date) {
 
-        //one_country.add(position, new One_Country(R.drawable.flag_france, title, description);
+        pickedCountries.add(position, new Country(CountryName, country_code,
+                NewCases, TotalCases, NewDeaths, TotalDeath, NewRecover, TotalRecover, Update_date));
+
         mRecyclerView.getAdapter().notifyItemInserted(position);
     }
 
+    // Build RecyclerView with LinearLayout Manager, Adapter and ItemTouch Helper
     public void buildRecyclerView() {
+        // Link to the XML
         mRecyclerView = findViewById(R.id.my_recycler_view);
-
+        // Initialise the LinearLayout Manager with RecyclerView
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        // Initialise the Custom Adapter and the ItemTouchHelper
         mAdapter = new CustomAdapter(this, pickedCountries);
-        new ItemTouchHelper(itemTouchHelperCallbackRight).attachToRecyclerView(mRecyclerView);
-        new ItemTouchHelper(itemTouchHelperCallbackLeft).attachToRecyclerView(mRecyclerView);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
 
     }
 
-    // Part' in order to Swipe to Right to Delete
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallbackRight = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+    // With this part, if you switch an item to the right OR to the left, it will be deleted
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -217,31 +200,10 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             pickedCountries.remove(viewHolder.getAdapterPosition());
             mRecyclerView.getAdapter().notifyDataSetChanged();
+
         }
     };
 
-    // Part' in order to Swipe to LEFT to mark as Done
-
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallbackLeft = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            //TODO: Adapt swipe to this app in specific
-        /*    if (pickedCountries.get(viewHolder.getAdapterPosition()).getStatus().equals("Not Done")){
-                pickedCountries.get(viewHolder.getAdapterPosition()).changeStatus("Done");
-                mRecyclerView.getAdapter().notifyItemChanged(viewHolder.getAdapterPosition());
-            }
-            else {
-                pickedCountries.get(viewHolder.getAdapterPosition()).changeStatus("Not Done");
-                mRecyclerView.getAdapter().notifyItemChanged(viewHolder.getAdapterPosition());
-            }
-            */
-        }
-    };
 
     // Button to go back to the Main Menu
     private void back_to_menu() {
@@ -262,7 +224,5 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 }

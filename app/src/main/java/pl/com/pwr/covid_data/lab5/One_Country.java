@@ -7,27 +7,35 @@ import java.util.ArrayList;
 
 import pl.com.pwr.covid_data.lab5.models.Country;
 
-public class One_Country extends Country implements Parcelable {
+public class One_Country implements Parcelable {
     private int mFlagResource;
-    private String mTitle;
-    private String mDueDate;
-    private ArrayList<Integer> mDescriptions;
+    private String mCountry_name;
+    private String mUpdate_date;
+    private int mNewCase;
+    private int mTotalCase;
+    private int mNewDeaths;
+    private int mTotalDeaths;
+    private int mNewRecover;
+    private int mTotalRecover;
 
 
-    public One_Country(int ImageResource, String Title, String DueDate, ArrayList<Integer> Descriptions) {
-        super();
-        mFlagResource = ImageResource;
-        mTitle = Title;
-        mDueDate = DueDate;
-        mDescriptions = Descriptions;
+    //public One_Country(int ImageResource, String Title, String DueDate, ArrayList<Integer> Descriptions) {mFlagResource = ImageResource;
+        //mTitle = Title;
+        //mDueDate = DueDate;
+       // mDescriptions = Descriptions;
 
-    }
 
     protected One_Country(Parcel in) {
         mFlagResource = in.readInt();
-        mTitle = in.readString();
-        mDueDate = in.readString();
-        mDescriptions = in.readArrayList(String.class.getClassLoader());
+        mCountry_name = in.readString();
+        mUpdate_date = in.readString();
+        mNewCase = in.readInt();
+        mTotalCase = in.readInt();
+        mNewDeaths = in.readInt();
+        mTotalDeaths = in.readInt();
+        mNewRecover = in.readInt();
+        mTotalRecover = in.readInt();
+
     }
 
     public static final Creator<One_Country> CREATOR = new Creator<One_Country>() {
@@ -48,18 +56,30 @@ public class One_Country extends Country implements Parcelable {
     }
 
     public String getTitle() {
-        return mTitle; }
-    public String getDueDate() {
-        return mDueDate;
+        return mCountry_name;
     }
-    public ArrayList<Integer> getDescriptions() {
-        return mDescriptions;
+    public String getDueDate() {
+        return mUpdate_date;
+    }
+    public int getNewCase(){
+        return mNewCase;
+    }
+    public int getTotalCase(){
+        return mTotalCase;
+    }
+    public int getNewDeaths(){
+        return mNewDeaths;
+    }
+    public int getTotalDeaths(){
+        return mTotalDeaths;
+    }
+    public int getNewRecover(){
+        return mNewRecover;
+    }
+    public int getTotalRecover(){
+        return mTotalRecover;
     }
 
-    public int getDescriptionsIndex(int index) {
-        int element = mDescriptions.get(index);
-        return element;
-    }
 
     @Override
     public int describeContents() {
@@ -69,9 +89,15 @@ public class One_Country extends Country implements Parcelable {
     @Override
     public void writeToParcel(Parcel destination, int flags) {
         destination.writeInt(mFlagResource);
-        destination.writeString(mTitle);
-        destination.writeString(mDueDate);
-        destination.writeList(mDescriptions);
+        destination.writeString(mCountry_name);
+        destination.writeString(mUpdate_date);
+        destination.writeInt(mNewCase);
+        destination.writeInt(mTotalCase);
+        destination.writeInt(mNewDeaths);
+        destination.writeInt(mTotalDeaths);
+        destination.writeInt(mNewRecover);
+        destination.writeInt(mTotalRecover);
+
     }
 
 }
