@@ -19,7 +19,7 @@ public class Fragment_Country4 extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.country_detail);
+        setContentView(R.layout.country_detail4);
 
         slidr = Slidr.attach(this);
 
