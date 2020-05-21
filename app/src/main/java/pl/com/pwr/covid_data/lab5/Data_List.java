@@ -2,6 +2,7 @@ package pl.com.pwr.covid_data.lab5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -52,6 +53,9 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     // Button to go back to Main Menu of the app & Btn to add a country we selected with the spinner
     private Button menu_btn, add_country_btn;
 
+    //boolean that confirms if data is ready
+    private boolean ready;
+
     // Contain the list of the Country Codes of all the flag we have in drawable.
     // All the flag are in Drawable > flag_data (you can see it with Project view, not with Android view
     private static final String[] countries = new String[] {
@@ -81,10 +85,12 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_list);
 
+        ready=false;
+        pickedCountries = new ArrayList<>();
+
+        Log.i("TEST1", "created");
         back_to_menu();
         new_country ();
-        //createOne_Country();
-
         //get spinner
         selectedCountry = findViewById(R.id.country_spinner);
         if (selectedCountry != null) {
@@ -100,18 +106,24 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         APIRetrofit client = new APIRetrofit();
         covidAPI =  client.start();
 
+        Log.i("TEST2", "passed");
         // Most important (and only) call, gets all the info we need.
         // Since the rest can only work after we get this info, the recyclerView has to be built within the response
         Call<Stats> call = covidAPI.getSummary();
         call.enqueue(new Callback<Stats>() {
             public void onResponse(Call<Stats> call, Response<Stats> response) {
 
+                Log.i("TEST2", "passed");
                 Stats stats = response.body();
+                Log.i("TEST3", "passed");
                 //from now on the worldstats will have the global stats and the allCountries variable will have each country with its stats
                 worldStats = stats.getGlobal();
                 allCountries = stats.getCountries();
-
+                Log.i("TEST2", String.valueOf(allCountries.size()));
                 buildRecyclerView();
+                ready=true;
+                Log.i("TEST", "BOOLEAN READY");
+
             }
 
             @Override
@@ -156,8 +168,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                     //new_description.add(totalRecovered);
 
                         int position = 0;
-                        add_country(position, countryName, country_code, newCases, totalCase,
-                                newDeaths, totalDeath, newRecovered, totalRecovered, update_date);
+                        add_country(position, countryName, country_code, newCases, totalCase, newDeaths, totalDeath, newRecovered, totalRecovered, update_date);
                     }
                 }
             }
@@ -168,16 +179,16 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     public void add_country(int position, String CountryName, String country_code, int NewCases,
                             int TotalCases, int NewDeaths, int TotalDeath, int NewRecover, int TotalRecover, int Update_date) {
 
-        pickedCountries.add(position, new Country(CountryName, country_code,
-                NewCases, TotalCases, NewDeaths, TotalDeath, NewRecover, TotalRecover, Update_date));
+        pickedCountries.add(position, new Country(CountryName, country_code, NewCases, TotalCases, NewDeaths, TotalDeath, NewRecover, TotalRecover));
 
         mRecyclerView.getAdapter().notifyItemInserted(position);
     }
 
     // Build RecyclerView with LinearLayout Manager, Adapter and ItemTouch Helper
     public void buildRecyclerView() {
+        Log.i("TEST2.5", "passed");
         // Link to the XML
-        mRecyclerView = findViewById(R.id.my_recycler_view);
+       /* mRecyclerView = findViewById(R.id.my_recycler_view);
         // Initialise the LinearLayout Manager with RecyclerView
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -186,6 +197,19 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         mAdapter = new CustomAdapter(this, pickedCountries);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
+        Log.i("TEST4", "passed");*/
+
+        // Link to the XML
+        mRecyclerView = findViewById(R.id.my_recycler_view);
+        // Initialise the LinearLayout Manager with RecyclerView
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // Initialise the Custom Adapter and the ItemTouchHelper
+        mAdapter = new CustomAdapter(this, allCountries);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
+        Log.i("TEST4", "passed");
 
     }
 

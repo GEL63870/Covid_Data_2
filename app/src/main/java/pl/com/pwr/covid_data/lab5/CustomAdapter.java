@@ -13,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import pl.com.pwr.covid_data.lab5.models.Country;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHolder> {
 
     //contains all the countries
-    private ArrayList<Country> mCountry_List;
+    private List<Country> mCountry_List;
     private Context context;
 
-    public CustomAdapter(Context context , ArrayList<Country> countries) {
+    public CustomAdapter(Context context , List<Country> countries) {
         this.context = context;
         mCountry_List = countries;
     }
@@ -68,10 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Country currentCountry = mCountry_List.get(position);
-        //holder.mImageView.setImageResource(currentCountry.getFlagResource());
         holder.mCountryName.setText(currentCountry.getcName());
-        holder.mUpdate_date.setText(currentCountry.getUpdate_date());
-        //holder.mStatus.setText(currentCountry.getStatus());
     }
 
     @Override
