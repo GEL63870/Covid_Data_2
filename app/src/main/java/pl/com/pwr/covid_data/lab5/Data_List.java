@@ -83,14 +83,13 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         back_to_menu();
         new_country ();
-        //createOne_Country();
 
         //get spinner
         selectedCountry = findViewById(R.id.country_spinner);
         if (selectedCountry != null) {
             selectedCountry.setOnItemSelectedListener(this);
         }
-        adapter = ArrayAdapter.createFromResource(this, R.array.country_names, android.R.layout.simple_spinner_item);
+        adapter = ArrayAdapter.createFromResource(this, R.array.country_codes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         if (selectedCountry != null) {
             selectedCountry.setAdapter(adapter);
@@ -107,7 +106,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
             public void onResponse(Call<Stats> call, Response<Stats> response) {
 
                 Stats stats = response.body();
-                //from now on the worldstats will have the global stats and the allCountries variable will have each country with its stats
+                //from now on the world stats will have the global stats and the allCountries variable will have each country with its stats
                 worldStats = stats.getGlobal();
                 allCountries = stats.getCountries();
 
@@ -173,6 +172,8 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         mRecyclerView.getAdapter().notifyItemInserted(position);
     }
+
+
 
     // Build RecyclerView with LinearLayout Manager, Adapter and ItemTouch Helper
     public void buildRecyclerView() {
