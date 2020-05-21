@@ -26,6 +26,9 @@
         <activity android:name=".models.Country" />
         <activity android:name=".models.Global" />
         <activity android:name=".models.Stats" />
+        <activity android:name=".Recap_Country"
+            android:theme="@style/AppTheme.SlidrActivityTheme">
+        </activity>
         <activity android:name=".Fragment_Country"
             android:theme="@style/AppTheme.SlidrActivityTheme">
         </activity>
