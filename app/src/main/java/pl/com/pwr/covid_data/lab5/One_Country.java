@@ -5,7 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 
-public class One_Country implements Parcelable {
+import pl.com.pwr.covid_data.lab5.models.Country;
+
+public class One_Country extends Country implements Parcelable {
     private int mFlagResource;
     private String mTitle;
     private String mDueDate;
@@ -13,6 +15,7 @@ public class One_Country implements Parcelable {
 
 
     public One_Country(int ImageResource, String Title, String DueDate, ArrayList<Integer> Descriptions) {
+        super();
         mFlagResource = ImageResource;
         mTitle = Title;
         mDueDate = DueDate;

@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -72,6 +73,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
     // Will contain all the data from a country we wand to add to recyclerview
     private ArrayList<Integer> new_due_date, new_description;
+    public ImageView flagRessources;
 
 
     @Override
@@ -134,6 +136,8 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                 // Finds country in the list of all countries and extracts the needed info
                 for(Country c : allCountries){
                     if(c.getcName() != null && c.getcName().contains(countryName)){
+                        String country_code = "R.drawable." + c.getcCode();
+                        String
                         int newCases = c.getNewConfirmed();
                         int totalCase = c.getTotalConfirmed();
                         int newDeaths = c.getNewDeaths();
@@ -145,6 +149,8 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                      // Once you extract all, you need to put into descriptions to use it in fragment
                      // Important to keep the same order in order to use them correctly after
 
+
+                    flagRessources = findViewById(country_code);
                     new_description.add(newCases);
                     new_description.add(totalCase);
                     new_description.add(newDeaths);
@@ -175,7 +181,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         france.add(500);
         france.add(200);
         france.add(6000);
-        pickedCountries.add(new One_Country(R.drawable.flag_data.ad, "France", "21/05/2020", france));
+        pickedCountries.add(new One_Country(R.drawable.flag_france, "France", "21/05/2020", france));
 
 
     }
