@@ -17,11 +17,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     COVID19StatsAPI covidAPI;
+    public TextView global_case;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        global_case = findViewById(R.id.global);
 
         // Initialise API to collect data
         APIRetrofit client = new APIRetrofit();
@@ -65,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
                 String mNew_recover = String.valueOf(global.getNewRecovered());
                 String mTotal_recover = String.valueOf(global.getTotalRecovered());
+
+                global_case.setText("New Cases : " +mNew_case+"|" + "Total : " + mTotal_case +"\n" +
+                        "New Death : " +mNew_death+"|" + "Total : " + mTotal_death +"\n" + "New Recover : " + mNew_recover +"|" + "Total : " + mTotal_recover);
+
 
             }
 
