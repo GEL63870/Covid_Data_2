@@ -49,18 +49,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         setContentView(R.layout.data_list);
 
         Data_List.this.setTitle("List of countries");
-        back_to_menu();
-
-        //get spinner
-        selectedCountry = findViewById(R.id.country_spinner);
-        if (selectedCountry != null) {
-            selectedCountry.setOnItemSelectedListener(this);
-        }
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.country_names, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        if (selectedCountry != null) {
-            selectedCountry.setAdapter(adapter);
-        }
 
         // Initialise API to collect data
         APIRetrofit client = new APIRetrofit();
@@ -122,19 +110,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         }
     };
-
-
-    // Button to go back to the Main Menu
-    private void back_to_menu() {
-        menu_btn = findViewById(R.id.menu_button);
-        menu_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Data_List.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
 
     @Override

@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Barrier_Gesture extends AppCompatActivity {
 
     private ImageView mgestureView;
-    private Button menu_btn;
 
 
     @Override
@@ -20,7 +19,8 @@ public class Barrier_Gesture extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barrier_gesture);
 
-        back_to_menu();
+        Barrier_Gesture.this.setTitle("COVID-19 Info");
+
 
         mgestureView = findViewById(R.id.gestureView);
         mgestureView.setOnClickListener(new View.OnClickListener() {
@@ -32,17 +32,4 @@ public class Barrier_Gesture extends AppCompatActivity {
         });
     }
 
-
-    // Button to go back to the Main Menu
-
-        private void back_to_menu(){
-        menu_btn = findViewById(R.id.menu_button);
-        menu_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Barrier_Gesture.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-}

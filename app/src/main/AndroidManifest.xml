@@ -19,15 +19,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Data_List" />
+        <activity
+            android:name=".Data_List"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".CustomAdapter" />
-        <activity android:name=".Barrier_Gesture" />
+        <activity
+            android:name=".Barrier_Gesture"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity android:name=".APIRetrofit" />
         <activity android:name=".models.Country" />
         <activity android:name=".models.Global" />
         <activity android:name=".models.Stats" />
-        <activity android:name=".Recap_Country"
+        <activity
+            android:name=".Recap_Country"
+            android:parentActivityName=".Data_List"
             android:theme="@style/AppTheme.SlidrActivityTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Data_List" />
         </activity>
     </application>
 
