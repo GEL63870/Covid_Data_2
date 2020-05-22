@@ -53,14 +53,13 @@ public class Recap_Country extends AppCompatActivity {
         String mNew_recover = String.valueOf(country.getNewRecovered());
         String mTotal_recover = String.valueOf(country.getTotalRecovered());
 
-        //flag_country.setImageResource(flagRes);
         country_name.setText(mCountry_name);
         update_date.setText(mUpdate_date);
-        new_case.setText(mNew_case);
-        total_case.setText(mTotal_case);
-        new_death.setText(mNew_death);
-        total_death.setText(mTotal_death);
-        new_recovered.setText(mNew_recover);
-        total_recovered.setText(mTotal_recover);
+        new_case.setText("Number of New Cases: " + mNew_case);
+        total_case.setText("Number of Total Cases: " + mTotal_case);
+        new_death.setText("Number of New Deaths: " + mNew_death);
+        total_death.setText("Number of Total Deaths: " + mTotal_death);
+        new_recovered.setText("Number of New Recover: " + mNew_recover);
+        total_recovered.setText("Number of Total Recover: " + mTotal_recover);
     }
 }

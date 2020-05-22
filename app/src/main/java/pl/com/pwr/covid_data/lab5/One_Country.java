@@ -3,9 +3,6 @@ package pl.com.pwr.covid_data.lab5;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.ArrayList;
-
-import pl.com.pwr.covid_data.lab5.models.Country;
 
 public class One_Country implements Parcelable {
 
@@ -18,13 +15,6 @@ public class One_Country implements Parcelable {
     private int mTotalDeaths;
     private int mNewRecover;
     private int mTotalRecover;
-
-
-    //public One_Country(int ImageResource, String Title, String DueDate, ArrayList<Integer> Descriptions) {mFlagResource = ImageResource;
-        //mTitle = Title;
-        //mDueDate = DueDate;
-       // mDescriptions = Descriptions;
-
 
     protected One_Country(Parcel in) {
         mFlagResource = in.readInt();

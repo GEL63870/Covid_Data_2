@@ -49,14 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginLeft="36dp"
-                android:text="Update date"
+                android:text="Total Cases : "
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.269"
                 app:layout_constraintStart_toEndOf="@+id/task_name_txt"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

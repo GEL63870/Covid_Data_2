@@ -156,15 +156,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                         int totalRecovered = c.getTotalRecovered();
                         int update_date = c.getUpdate_date();
 
-                     //etc. you can extract anything you want from the chosen country here;
-
-                    // flagRessources = findViewById(country_code);
-                    //new_description.add(newCases);
-                    //new_description.add(totalCase);
-                    //new_description.add(newDeaths);
-                    //new_description.add(totalDeath);
-                    //new_description.add(newRecovered);
-                    //new_description.add(totalRecovered);
 
                         int position = 0;
                         add_country(position, countryName, country_code, newCases, totalCase, newDeaths, totalDeath, newRecovered, totalRecovered, update_date);
