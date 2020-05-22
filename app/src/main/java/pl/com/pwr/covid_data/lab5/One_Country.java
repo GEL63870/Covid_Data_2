@@ -6,7 +6,6 @@ import android.os.Parcelable;
 
 public class One_Country implements Parcelable {
 
-    private int mFlagResource;
     private String mCountry_name;
     private String mUpdate_date;
     private int mNewCase;
@@ -17,7 +16,6 @@ public class One_Country implements Parcelable {
     private int mTotalRecover;
 
     protected One_Country(Parcel in) {
-        mFlagResource = in.readInt();
         mCountry_name = in.readString();
         mUpdate_date = in.readString();
         mNewCase = in.readInt();
@@ -42,9 +40,6 @@ public class One_Country implements Parcelable {
     };
 
 
-    public int getImageResource(){
-        return mFlagResource;
-    }
 
     public String getTitle() {
         return mCountry_name;
@@ -79,7 +74,6 @@ public class One_Country implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel destination, int flags) {
-        destination.writeInt(mFlagResource);
         destination.writeString(mCountry_name);
         destination.writeString(mUpdate_date);
         destination.writeInt(mNewCase);

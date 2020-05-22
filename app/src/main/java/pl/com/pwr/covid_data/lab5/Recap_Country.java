@@ -15,7 +15,6 @@ public class Recap_Country extends AppCompatActivity {
 
     private SlidrInterface slidr;
 
-    private ImageView flag_country;
     private TextView country_name, update_date, new_case, total_case, new_death, total_death,
             new_recovered, total_recovered;
 
@@ -27,7 +26,6 @@ public class Recap_Country extends AppCompatActivity {
 
         slidr = Slidr.attach(this);
 
-        flag_country = findViewById(R.id.country_flag);
         country_name = findViewById(R.id.country_name);
         update_date = findViewById(R.id.update_date);
         new_case = findViewById(R.id.new_cases);
@@ -39,7 +37,6 @@ public class Recap_Country extends AppCompatActivity {
 
         Intent intent = getIntent();
         Country country = (Country) intent.getSerializableExtra("country");
-        //int flagRes = (country != null ? country.getImageResource() : 0);
         String mCountry_name =country.getcName();
         Recap_Country.this.setTitle("Situation of "+ mCountry_name);
         String mUpdate_date = String.valueOf(country.getUpdate_date());

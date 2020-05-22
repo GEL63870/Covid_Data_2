@@ -30,7 +30,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView mImageView;
         TextView mCountryName;
         TextView mTotal_Cases;
         CustomAdapter mAdapter;
@@ -38,7 +37,6 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
 
         MyViewHolder(@NonNull View itemView, CustomAdapter adapter) {
             super(itemView);
-          //  mImageView = itemView.findViewById(R.id.iconView);
             mCountryName = itemView.findViewById(R.id.task_name_txt);
             mTotal_Cases =  itemView.findViewById(R.id.due_date);
             mAdapter=adapter;

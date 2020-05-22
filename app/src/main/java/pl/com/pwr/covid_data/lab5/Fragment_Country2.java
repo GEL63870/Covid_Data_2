@@ -26,7 +26,6 @@ public class Fragment_Country2 extends AppCompatActivity {
         Intent intent = getIntent();
         One_Country one_country = intent.getParcelableExtra("task");
 
-        int flagRes = (one_country != null ? one_country.getImageResource() : 0);
         String mCountry_name = (one_country != null) ? one_country.getTitle() : null;
         String mUpdate_date = one_country != null ? one_country.getDueDate() : null;
 
@@ -39,8 +38,6 @@ public class Fragment_Country2 extends AppCompatActivity {
 
 
         // Set of the view
-        ImageView country_flag = findViewById(R.id.flag_icon);
-        country_flag.setImageResource(flagRes);
 
         TextView country = findViewById(R.id.title_detail);
         country.setText(mCountry_name);

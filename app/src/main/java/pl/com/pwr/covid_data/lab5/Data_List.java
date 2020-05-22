@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -56,29 +53,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     //boolean that confirms if data is ready
     private boolean ready;
 
-    // Contain the list of the Country Codes of all the flag we have in drawable.
-    // All the flag are in Drawable > flag_data (you can see it with Project view, not with Android view
-    private static final String[] countries = new String[] {
-            "ad", "ae", "af", "ag", "ai", "al", "am", "ao", "ar", "at", "au", "ax", "az", "ba", "bb",
-            "bd", "be", "bf", "bg", "bh", "bi", "bj", "bm", "bn", "bo", "br", "bs", "bt", "bw", "by",
-            "bz", "ca", "caf", "cas", "cd", "ceu", "cf", "cg", "ch", "ch", "ci", "cl", "cm", "cn",
-            "cna", "co", "coc", "cr", "csa", "cu", "cv", "cy", "cz", "de", "dj", "dk", "dm", "dz", "ec",
-            "ee", "eg", "er", "es", "et", "eu", "fi", "fj", "fm", "fr", "ga", "gb", "gd", "ge", "gh",
-            "gm", "gn", "gq", "gr", "gt", "gw", "gy", "hk", "hn", "hr", "ht", "hu", "id", "ie", "il",
-            "in", "iq", "ir", "is", "it", "jm", "jo", "jp", "ke", "kg", "kh", "km", "kn", "kp", "kr",
-            "kw", "ky", "kz", "la", "lb", "lc", "li", "lk", "lr", "ls", "lt", "lu", "lv", "ly", "ma",
-            "mc", "md", "me", "mg", "mk", "ml", "mm", "mn", "mo", "mr", "ms", "mt", "mu", "mv", "mw",
-            "mx", "my", "mz", "na", "ne", "ng", "ni", "nl", "no", "np", "nz", "om", "pa", "pe", "pg",
-            "ph", "pk", "pl", "pr", "pt", "pw", "py", "qa", "ro", "rs", "ru", "rw", "sa", "sb", "sc",
-            "sd", "se", "sg", "si", "sk", "sl", "sm", "sn", "so", "sr", "st", "sv", "sy", "sz", "tc",
-            "td", "tg", "th", "tj", "tl", "tm", "tn", "to", "tr", "tt", "tw", "tz", "ua", "ug", "us",
-            "uy", "uz", "vc", "ve", "vg", "vn", "ws", "ww", "ye", "za", "zw"
-    };
-
-    // Will contain all the data from a country we wand to add to recyclerview
-
-    public ImageView flagRessources;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +65,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         Data_List.this.setTitle("List of countries");
         Log.i("TEST1", "created");
         back_to_menu();
-       // new_country ();
+
         //get spinner
         selectedCountry = findViewById(R.id.country_spinner);
         if (selectedCountry != null) {
@@ -135,44 +109,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
-    // Will add a new country to the recyclerview list, 1st select a country with spinner, then add
-    private void new_country() {
-        add_country_btn = findViewById(R.id.new_country_button);
-        add_country_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Add function to add country to Recyclerview
-                String countryName = selectedCountry.getItemAtPosition(selectedCountry.getSelectedItemPosition()).toString();
-
-                // Finds country in the list of all countries and extracts the needed info
-                for(Country c : allCountries){
-                    if(c.getcName() != null && c.getcName().contains(countryName)){
-                        String country_code = c.getcCode();
-                        int newCases = c.getNewConfirmed();
-                        int totalCase = c.getTotalConfirmed();
-                        int newDeaths = c.getNewDeaths();
-                        int totalDeath = c.getTotalDeaths();
-                        int newRecovered = c.getNewRecovered();
-                        int totalRecovered = c.getTotalRecovered();
-                        int update_date = c.getUpdate_date();
-
-
-                        int position = 0;
-                        add_country(position, countryName, country_code, newCases, totalCase, newDeaths, totalDeath, newRecovered, totalRecovered, update_date);
-                    }
-                }
-            }
-        });
-    }
-
-    // Need to have a database with all the flag of each country and put the good one on the new item
-    public void add_country(int position, String CountryName, String country_code, int NewCases,
-                            int TotalCases, int NewDeaths, int TotalDeath, int NewRecover, int TotalRecover, int Update_date) {
-
-        pickedCountries.add(position, new Country(CountryName, country_code, NewCases, TotalCases, NewDeaths, TotalDeath, NewRecover, TotalRecover));
-
-        mRecyclerView.getAdapter().notifyItemInserted(position);
-    }
 
     // Build RecyclerView with LinearLayout Manager, Adapter and ItemTouch Helper
     public void buildRecyclerView() {
@@ -200,7 +136,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            pickedCountries.remove(viewHolder.getAdapterPosition());
+            allCountries.remove(viewHolder.getAdapterPosition());
             mRecyclerView.getAdapter().notifyDataSetChanged();
 
         }
