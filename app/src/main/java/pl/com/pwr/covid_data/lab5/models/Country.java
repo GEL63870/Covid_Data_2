@@ -3,7 +3,9 @@ package pl.com.pwr.covid_data.lab5.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public  class Country{
+import java.io.Serializable;
+
+public  class Country implements Serializable {
     @SerializedName("Country")
     private String cName;
     @SerializedName("CountryCode")

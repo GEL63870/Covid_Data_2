@@ -2,6 +2,7 @@ package pl.com.pwr.covid_data.lab5;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,8 +53,8 @@ public class CustomAdapter extends RecyclerView.Adapter <CustomAdapter.MyViewHol
             Country country = mCountry_List.get(mPosition);
 
 
-            Intent intent = new Intent(v.getContext(), Fragment_Country.class);
-            intent.putExtra("task", mPosition);
+            Intent intent = new Intent(v.getContext(), Recap_Country.class);
+            intent.putExtra("country", country);
 
             v.getContext().startActivity(intent);
             }

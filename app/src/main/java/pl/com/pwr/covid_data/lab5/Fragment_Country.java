@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import pl.com.pwr.covid_data.lab5.models.Country;
 
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -20,26 +21,24 @@ public class Fragment_Country extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.country_detail);
+        setContentView(R.layout.recap_country);
 
         slidr = Slidr.attach(this);
-
+/*
         // You need to put you data in this initialize points
         Intent intent = getIntent();
-        One_Country one_country = intent.getParcelableExtra("task");
-        int flagRes = (one_country != null ? one_country.getImageResource() : 0);
-        String mCountry_name = (one_country != null) ? one_country.getTitle() : null;
-        String mUpdate_date = one_country != null ? one_country.getDueDate() : null;
-
-        // Here we have the 2 data Int that will be use in the progress bar
-        int mNew_case = (one_country != null ? one_country.getNewCase() : 0);
-        int mTotal_case = (one_country != null ? one_country.getTotalCase() : 0);
+        Country country = intent.getParcelableExtra("task");
+        //int flagRes = (country != null ? country.getImageResource() : 0);
+        String mCountry_name = country.getcName();
+        String mUpdate_date = String.valueOf(country.getUpdate_date());
+        int mNew_case = country.getNewConfirmed()i;
+        int mTotal_case = country.getTotalCase();
 
 
 
         // Set of the view
         ImageView country_flag = findViewById(R.id.flag_icon);
-        country_flag.setImageResource(flagRes);
+      //  country_flag.setImageResource(flagRes);
 
         TextView country = findViewById(R.id.title_detail);
         country.setText(mCountry_name);
@@ -57,6 +56,6 @@ public class Fragment_Country extends AppCompatActivity {
 
         mProgressBar = findViewById(R.id.circle_progress_bar);
         mProgressBar.setProgress(10); // Initialisation (100-10 = 90% on the progress bar)
-
+*/
     }
 }

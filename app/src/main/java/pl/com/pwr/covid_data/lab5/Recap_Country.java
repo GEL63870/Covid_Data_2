@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import pl.com.pwr.covid_data.lab5.models.Country;
 
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -36,22 +37,22 @@ public class Recap_Country extends AppCompatActivity {
         total_recovered = findViewById(R.id.total_recovered);
 
         Intent intent = getIntent();
-        One_Country one_country = intent.getParcelableExtra("task");
-        int flagRes = (one_country != null ? one_country.getImageResource() : 0);
-        String mcountry_name = (one_country != null) ? one_country.getTitle() : null;
-        String mUpdate_date = one_country != null ? one_country.getDueDate() : null;
+        Country country = (Country) intent.getSerializableExtra("country");
+        //int flagRes = (country != null ? country.getImageResource() : 0);
+        String mCountry_name =country.getcName();
+        String mUpdate_date = String.valueOf(country.getUpdate_date());
 
-        Integer mNew_case = (one_country != null) ? one_country.getNewCase() : null;
-        Integer mTotal_case = (one_country != null) ? one_country.getTotalCase() : null;
+        String mNew_case = String.valueOf(country.getNewConfirmed());
+        String mTotal_case = String.valueOf(country.getTotalConfirmed());
 
-        Integer mNew_death = (one_country != null) ? one_country.getNewDeaths() : null;
-        Integer mTotal_death = (one_country != null) ? one_country.getTotalDeaths() : null;
+        String mNew_death = String.valueOf(country.getNewDeaths());
+        String mTotal_death = String.valueOf(country.getTotalDeaths());
 
-        Integer mNew_recover = (one_country != null) ? one_country.getNewDeaths() : null;
-        Integer mTotal_recover = (one_country != null) ? one_country.getTotalDeaths() : null;
+        String mNew_recover = String.valueOf(country.getNewRecovered());
+        String mTotal_recover = String.valueOf(country.getTotalRecovered());
 
-        flag_country.setImageResource(flagRes);
-        country_name.setText(mcountry_name);
+        //flag_country.setImageResource(flagRes);
+        country_name.setText(mCountry_name);
         update_date.setText(mUpdate_date);
         new_case.setText(mNew_case);
         total_case.setText(mTotal_case);
