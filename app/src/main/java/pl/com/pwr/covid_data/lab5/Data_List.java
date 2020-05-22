@@ -25,24 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Data_List extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-      //  implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
-   // private ArrayList<One_Country> pickedCountries;
-    //list of countries that we picked
-    private ArrayList<Country> pickedCountries;
 
     //list of all the countries in the api
     private List<Country> allCountries;
 
-    //contains stats about the world
-    private Global worldStats;
     COVID19StatsAPI covidAPI;
 
     // In order to manage and implement RecyclerView and Adapter
     private RecyclerView mRecyclerView;
-    private CustomAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayAdapter<CharSequence> adapter;
 
     // In order to select the country which we want to follow Covid Data
     private Spinner selectedCountry;
@@ -50,8 +41,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
     // Button to go back to Main Menu of the app & Btn to add a country we selected with the spinner
     private Button menu_btn, add_country_btn;
 
-    //boolean that confirms if data is ready
-    private boolean ready;
 
 
     @Override
@@ -59,11 +48,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_list);
 
-        ready=false;
-        pickedCountries = new ArrayList<>();
-
         Data_List.this.setTitle("List of countries");
-        Log.i("TEST1", "created");
         back_to_menu();
 
         //get spinner
@@ -71,7 +56,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         if (selectedCountry != null) {
             selectedCountry.setOnItemSelectedListener(this);
         }
-        adapter = ArrayAdapter.createFromResource(this, R.array.country_names, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.country_names, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         if (selectedCountry != null) {
             selectedCountry.setAdapter(adapter);
@@ -81,7 +66,6 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         APIRetrofit client = new APIRetrofit();
         covidAPI =  client.start();
 
-        Log.i("TEST2", "passed");
         // Most important (and only) call, gets all the info we need.
         // Since the rest can only work after we get this info, the recyclerView has to be built within the response
         Call<Stats> call = covidAPI.getSummary();
@@ -91,11 +75,8 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
                 Stats stats = response.body();
                 //from now on the worldstats will have the global stats and the allCountries variable will have each country with its stats
                 assert stats != null;
-                worldStats = stats.getGlobal();
                 allCountries = stats.getCountries();
-                Log.i("TEST2", String.valueOf(allCountries.size()));
                 buildRecyclerView();
-                ready=true;
 
             }
 
@@ -116,11 +97,11 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         // Link to the XML
         mRecyclerView = findViewById(R.id.my_recycler_view);
         // Initialise the LinearLayout Manager with RecyclerView
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // Initialise the Custom Adapter and the ItemTouchHelper
-        mAdapter = new CustomAdapter(this, allCountries);
+        CustomAdapter mAdapter = new CustomAdapter(this, allCountries);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
         Log.i("TEST4", "passed");
