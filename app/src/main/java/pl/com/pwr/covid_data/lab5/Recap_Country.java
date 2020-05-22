@@ -23,7 +23,6 @@ public class Recap_Country extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recap_country);
 
-
         slidr = Slidr.attach(this);
 
         country_name = findViewById(R.id.country_name);
@@ -51,7 +50,6 @@ public class Recap_Country extends AppCompatActivity {
         String mTotal_recover = String.valueOf(country.getTotalRecovered());
 
         country_name.setText(mCountry_name);
-        update_date.setText(mUpdate_date);
         new_case.setText("Number of New Cases: " + mNew_case);
         total_case.setText("Number of Total Cases: " + mTotal_case);
         new_death.setText("Number of New Deaths: " + mNew_death);

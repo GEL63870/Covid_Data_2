@@ -30,18 +30,6 @@
         <activity android:name=".Recap_Country"
             android:theme="@style/AppTheme.SlidrActivityTheme">
         </activity>
-        <activity android:name=".Fragment_Country"
-            android:theme="@style/AppTheme.SlidrActivityTheme">
-        </activity>
-        <activity android:name=".Fragment_Country2"
-            android:theme="@style/AppTheme.SlidrActivityTheme">
-        </activity>
-        <activity android:name=".Fragment_Country3"
-            android:theme="@style/AppTheme.SlidrActivityTheme">
-        </activity>
-        <activity android:name=".Fragment_Country4"
-            android:theme="@style/AppTheme.SlidrActivityTheme">
-        </activity>
     </application>
 
 </manifest>
