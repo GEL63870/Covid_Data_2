@@ -88,6 +88,7 @@ public class Data_List extends AppCompatActivity implements AdapterView.OnItemSe
         ready=false;
         pickedCountries = new ArrayList<>();
 
+        Data_List.this.setTitle("List of countries");
         Log.i("TEST1", "created");
         back_to_menu();
        // new_country ();

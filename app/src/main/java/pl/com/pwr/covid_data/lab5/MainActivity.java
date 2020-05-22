@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        MainActivity.this.setTitle("COVID-19 Helper");
+
         welcome = findViewById(R.id.welcome);
         authors = findViewById(R.id.authors);
 

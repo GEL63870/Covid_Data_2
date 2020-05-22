@@ -24,6 +24,7 @@ public class Recap_Country extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recap_country);
 
+
         slidr = Slidr.attach(this);
 
         flag_country = findViewById(R.id.country_flag);
@@ -40,6 +41,7 @@ public class Recap_Country extends AppCompatActivity {
         Country country = (Country) intent.getSerializableExtra("country");
         //int flagRes = (country != null ? country.getImageResource() : 0);
         String mCountry_name =country.getcName();
+        Recap_Country.this.setTitle("Situation of "+ mCountry_name);
         String mUpdate_date = String.valueOf(country.getUpdate_date());
 
         String mNew_case = String.valueOf(country.getNewConfirmed());
